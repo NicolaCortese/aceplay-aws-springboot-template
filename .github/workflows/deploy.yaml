@@ -23,8 +23,8 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      # - name: Run tests
-      #   run: ./gradlew test
+      - name: Run tests
+        run: ./gradlew test
 
       - name: Build
         run: ./gradlew jar
@@ -55,7 +55,7 @@ jobs:
           region: eu-west-2
           deployment_package: aceplay-aws-0.0.1-SNAPSHOT.jar
           use_existing_version_if_available: true
-      # - name: Cleanup Gradle Cache
-      #   run: |
-      #     rm -f ~/.gradle/caches/modules-2/modules-2.lock
-      #     rm -f ~/.gradle/caches/modules-2/gc.properties
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
