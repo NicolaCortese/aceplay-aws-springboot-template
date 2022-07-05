@@ -1,4 +1,4 @@
-name: Deploy to AWS
+name: Deploy main to AWS
 
 on:
   push:
@@ -10,6 +10,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout source code
       - uses: actions/checkout@v2
 
       - name: Set up JDK 11
@@ -22,8 +23,8 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Run tests
-        run: ./gradlew test
+      # - name: Run tests
+      #   run: ./gradlew test
 
       - name: Build
         run: ./gradlew jar
@@ -32,7 +33,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: build/libs/aceplay-aws-0.0.1-SNAPSHOT.jar   
+          path: build/libs/aceplay-aws-0.0.1-SNAPSHOT.jar  
+
   deploy:
     needs: build
     name: Deploy
