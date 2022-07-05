@@ -44,6 +44,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact
+
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v13
         with:
@@ -55,8 +56,8 @@ jobs:
           region: eu-west-2
           deployment_package: aceplay-aws-0.0.1-SNAPSHOT.jar
           use_existing_version_if_available: true
+          
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
           rm -f ~/.gradle/caches/modules-2/gc.properties
-          
